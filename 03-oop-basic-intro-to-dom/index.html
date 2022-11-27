@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<meta charset="UTF-8" />
+
+<link rel="stylesheet" type="text/css" href="./1-column-chart/src/style.css" />
+
+<body>
+  <div id="root"></div>
+</body>
+
+<script type="module">
+  class MyComponent {
+    constructor(title = '', data = []) {
+      this.title = title;
+      this.data = data;
+    }
+
+    myRender () {
+      console.error(this.title);
+      console.error(this.data);
+    }
+  }
+
+  const obj = new MyComponent(
+    'my first super component',
+    ['foo', 'bar', 'baz']
+  );
+
+  obj.myRender()
+</script>

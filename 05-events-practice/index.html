@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+
+<body>
+
+<div id="root"></div>
+
+<button id="btn">Click me maybe?!</button>
+
+<button id="btn2">Remove listener</button>
+
+</body>
+
+<script type="module">
+  const myBtn = document.getElementById('btn');
+
+  const callback = (event) => {
+    console.error('addEventListener', event);
+  };
+
+  myBtn.addEventListener('click', callback);
+  myBtn.removeEventListener('click', callback);
+</script>

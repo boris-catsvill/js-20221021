@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+
+<body>
+  <div id="root"></div>
+</body>
+
+<script type="module">
+  const loadData = () => {
+    const from = '2022-10-16T17%3A06%3A45.222Z';
+    const to = '2022-11-15T17%3A06%3A45.222Z';
+
+    const promise = fetch(`https://course-js.javascript.ru/api/dashboard/orders?from=${from}&to=${to}`)
+
+    console.error(promise);
+
+    promise
+      .then(response => {       // 10-200 ms...
+        return response.json(); // promise 10-300 ms...
+      })
+      .then(data => {
+        console.error(data);
+      })
+      .catch(error => {
+        console.log('This is error obj', error);
+      })
+      .finally(() => {
+        console.error('this is done');
+      });
+  };
+
+  class Component {
+    data = [];
+
+    constructor () {
+
+      this.render();
+      this.loadData();
+
+      console.error(data);
+    }
+
+    loadData () {
+      fetchJson('https://course-js.javascript.ru/api/dashboard/bestsellers?from=2022-10-16T18%3A18%3A28.542Z&to=2022-11-15T18%3A18%3A28.542Z&_sort=title&_order=asc&_start=0&_end=30')
+        .then(data => {
+          console.error(data);
+
+          this.data = data;
+          this.update();
+        })
+        .catch(err => {
+          console.error(err);
+        })
+    }
+
+    get template () {
+      return `<div>
+        <h2>My component</h2>
+        <ul>/* ... */</ul>
+      </div>`
+    }
+
+    update () {
+      const ulElement = this.element.querySelector('ul');
+
+      ulElement.innerHTML = this.data.map(item => {
+        return `<li>${item.description}</li>`
+      });
+    }
+
+    render () {
+      const wrapper = document.createElement("div");
+
+      wrapper.innerHTML = this.template;
+
+      this.element = wrapper.firstElementChild;
+    }
+  }
+
+  const obj = new Component();
+
+  root.append(obj.element);
+
+</script>

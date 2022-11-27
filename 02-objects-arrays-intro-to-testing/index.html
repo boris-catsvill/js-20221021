@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+
+<script>
+const someObj = {
+  toString: 1
+};
+
+someObj.__proto__ = 'foobar';
+
+console.error(someObj + '');
+</script>

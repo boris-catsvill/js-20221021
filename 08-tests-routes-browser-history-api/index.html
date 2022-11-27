@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+
+<button id="btn">Click me!</button>
+
+<script>
+  console.error(1);
+
+  setTimeout(() => { // macro task
+    console.error(3);
+  }, 0);
+
+  Promise.resolve('foo-bar') // micro task
+    .then(() => console.log(4));
+
+  console.error(2);
+</script>
